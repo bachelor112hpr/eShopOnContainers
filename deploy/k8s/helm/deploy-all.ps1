@@ -23,7 +23,7 @@ function Install-Chart  {
     Param([string]$chart,[string]$initialOptions, [bool]$customRegistry)
     $options=$initialOptions
     if ($sslEnabled) {
-        $options = "$options --set ingress.tls[0].secretName=$tlsSecretName --set ingress.tls[0].hosts={$dns}" 
+        $options = "$options --set ingress.tls[0].secretName=$tlsSecretName --set ingress.tls[0].hosts={$dns}"
         if ($sslSupport -ne "custom") {
             $options = "$options --set inf.tls.issuer=$sslIssuer"
         }
@@ -31,8 +31,8 @@ function Install-Chart  {
     if ($customRegistry) {
         $options = "$options --set inf.registry.server=$registry --set inf.registry.login=$dockerUser --set inf.registry.pwd=$dockerPassword --set inf.registry.secretName=eshop-docker-scret"
     }
-    
-    if ($chart -ne "eshop-common" -or $customRegistry)  {       # eshop-common is ignored when no secret must be deployed        
+
+    if ($chart -ne "eshop-common" -or $customRegistry)  {       # eshop-common is ignored when no secret must be deployed
         $command = "install $options $appName-$chart $chart"
         Write-Host "Helm Command: helm $command" -ForegroundColor Gray
         Invoke-Expression 'cmd /c "helm $command"'
@@ -96,7 +96,7 @@ if ($useLocalk8s -and $sslEnabled) {
 
 if ($clean) {
     Write-Host "Cleaning previous helm releases..." -ForegroundColor Green
-    helm delete --purge $(helm ls -q eshop) 
+    helm delete --purge $(helm ls -q eshop)
     Write-Host "Previous releases deleted" -ForegroundColor Green
 }
 
@@ -119,7 +119,7 @@ $gateways = ("apigwmm", "apigwms", "apigwwm", "apigwws")
 if ($deployInfrastructure) {
     foreach ($infra in $infras) {
         Write-Host "Installing infrastructure: $infra" -ForegroundColor Green
-        helm install $appName-$infra $infra--values app.yaml --values inf.yaml --values $ingressValuesFile --set app.name=$appName --set inf.k8s.dns=$dns --set "ingress.hosts={$dns}"     
+        helm install $appName-$infra $infra --values app.yaml --values inf.yaml --values $ingressValuesFile --set app.name=$appName --set inf.k8s.dns=$dns --set "ingress.hosts={$dns}"     
     }
 }
 else {
@@ -138,7 +138,7 @@ if ($deployCharts) {
         if ($chartsToDeploy -eq "*" -or $chartsToDeploy.Contains($chart)) {
             Write-Host "Installing Api Gateway Chart: $chart" -ForegroundColor Green
             Install-Chart $chart "-f app.yaml -f inf.yaml -f $ingressValuesFile  --set app.name=$appName --set inf.k8s.dns=$dns  --set image.pullPolicy=$imagePullPolicy --set inf.mesh.enabled=$useMesh --set ingress.hosts={$dns} --set inf.tls.enabled=$sslEnabled" $false
-            
+
         }
     }
 }
