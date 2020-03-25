@@ -9,9 +9,10 @@ jobs:
   condition: and(succeeded(),ne('${{ variables['Build.Reason'] }}', 'PullRequest'))
   dependsOn:
     - BuildWindows
-    - BuildLinux  
-  pool: 
-    vmImage: 'Ubuntu 16.04'
+    - BuildLinux
+  pool:
+    name: Default
+    #vmImage: 'Ubuntu 16.04'
   steps:
   - task: Docker@1
     displayName: Docker Login
