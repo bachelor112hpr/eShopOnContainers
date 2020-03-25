@@ -33,7 +33,7 @@ jobs:
 #    vmImage: 'ubuntu-16.04'
   steps:
   - task: DockerCompose@0
-    displayName: Compose build ${{ parameters.services }} $(Build.SourcesDirectory)
+    displayName: Compose build ${{ parameters.services }}
     inputs:
       dockerComposeCommand: 'build ${{ parameters.services }}'
       containerregistrytype: Container Registry
