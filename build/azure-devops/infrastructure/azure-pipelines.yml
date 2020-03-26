@@ -1,5 +1,5 @@
 pool:
-  name: default
+  name: Default
 variables:
   - group: PipelineVariables
 trigger:
