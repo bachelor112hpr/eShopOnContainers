@@ -8,7 +8,7 @@ Param(
 
 $gitContext = "https://github.com/$gitUser/$repoName"
 
-$services = @( 
+$services = @(
     @{ Name="eshopbasket"; Image="eshop/basket.api"; File="src/Services/Basket/Basket.API/Dockerfile" },
     @{ Name="eshopcatalog"; Image="eshop/catalog.api"; File="src/Services/Catalog/Catalog.API/Dockerfile" },
     @{ Name="eshopidentity"; Image="eshop/identity.api"; File="src/Services/Identity/Identity.API/Dockerfile" },
@@ -30,7 +30,7 @@ $services |% {
     $bname = $_.Name
     $bimg = $_.Image
     $bfile = $_.File
-    Write-Host "Setting ACR build $bname ($bimg)"    
+    Write-Host "Setting ACR build $bname ($bimg)"
     az acr build-task create --registry $acrName --name $bname --image ${bimg}:$gitBranch --context $gitContext --branch $gitBranch --git-access-token $patToken --file $bfile
 }
 
