@@ -13,7 +13,7 @@ function regName {
     }
 
     if($(az acr check-name -n $RegName --query nameAvailable) -eq $false){
-        Write-Host 'Navnet finnes fra før' -ForegroundColor Red
+        Write-Host 'name already exists' -ForegroundColor Red
         regName
     }
 }
