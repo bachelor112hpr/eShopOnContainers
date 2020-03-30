@@ -30,7 +30,7 @@ $rebootReq = $false
 	    $oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
 	    $newpath = “$oldpath;C:\kubectl”
 	    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
-        Write-Host 'Envirement-variable PATH now includes $pathToKubectl' -ForegroundColor Green
+        Write-Host 'Envirement-variable PATH now includes C:\kubectl' -ForegroundColor Green
         $rebootReq = $true
         Write-Host "Kubectl is now installed." -ForegroundColor Green
     }else {
