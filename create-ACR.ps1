@@ -1,6 +1,5 @@
 Param(
-    [parameter(Mandatory=$false)][String]$loc,
-    [parameter(Mandatory=$false)][String]$rg
+    [parameter(Mandatory=$false)][String]$loc
 )
 
 Write-Host 'Create Azure Container Registry (ACR):' -ForegroundColor Green
@@ -13,8 +12,10 @@ function regName {
     }
 
     if($(az acr check-name -n $RegName --query nameAvailable) -eq $false){
-        Write-Host 'name already exists' -ForegroundColor Red
+        Write-Host 'Navnet finnes fra før' -ForegroundColor Red
         regName
+    }else{
+	}
     }
 }
 
@@ -23,6 +24,7 @@ function location {
     if ([string]::IsNullOrWhiteSpace($loc)){
         $loc = 'eastus'
     }
+    $global:location=$loc
 }
 
 function selectRg {
@@ -49,7 +51,9 @@ function sku {
         if ($sku -ne 'Basic' -and $sku -ne 'Standard' -and $sku -ne 'Premium') {
             Write-Host $sku 'is not a choose' -ForegroundColor red
             sku
-        }
+        }else{
+	   $global:sku=$sku
+	}
 }
 
 #Run the functions above
@@ -61,10 +65,7 @@ if ([string]::IsNullOrWhiteSpace($loc)){
 
 sku
 
-if ([string]::IsNullOrWhiteSpace($rg)) {
-    selectRg
-}
-
+selectRg
 
 $adminEnabled = Read-Host 'Do you want to enable admin user? y/n (Enter for Yes)'
 Switch ($adminEnabled) {
@@ -73,6 +74,7 @@ Switch ($adminEnabled) {
     Default {$adminUser=$true}
 }
 
-az acr create -g $rg -n $RegName --sku $sku --admin-enabled $adminUser --location $loc
+Write-Host $rg $RegistryName
+az acr create -g $rg -n $RegistryName --sku $sku --admin-enabled $adminUser --location $location
 
 Write-Host 'ACR' $RegName 'has been created in Resource Group' $rg -ForegroundColor Green
