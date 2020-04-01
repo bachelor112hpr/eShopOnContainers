@@ -28,7 +28,7 @@ $rebootReq = $false
 
 	    Write-Host 'Adding $pathToKubectl to Envirement-variable...' -ForegroundColor Green
 	    $oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
-	    $newpath = $oldpath+"C:\kubectl"
+	    $newpath = $oldpath+";C:\kubectl"
 	    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
         Write-Host 'Envirement-variable PATH now includes C:\kubectl' -ForegroundColor Green
         $rebootReq = $true
@@ -39,6 +39,6 @@ $rebootReq = $false
 
     if($rebootReq){
         Write-Host 'Systemrestart required. Rebooting now...' -ForegroundColor Yellow
-        Start-Sleep 30
+	Start-sleep 5
         Restart-Computer
     }
