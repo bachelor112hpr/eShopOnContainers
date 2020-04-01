@@ -57,12 +57,12 @@ if($enableAutoscaling) {
     Write-Host "Minnodes: $minNodes"
     az aks create --resource-group $rg --name $clusterName --node-count $minNodes --enable-cluster-autoscaler --min-count $minNodes --max-count $maxNodes --enable-addons monitoring,http_application_routing --generate-ssh-keys
     Write-Host "Cluster created." -ForegroundColor Green
-    Start-Sleep 5
 }else {
     $nodes = Read-Host -prompt "Select number of nodes in the cluster"
 
     Write-Host "Creating cluster with $nodes nodes. This may take a while..." -ForegroundColor Yellow
     az aks create --resource-group $rg --name $clusterName --node-count $nodes --enable-addons monitoring,http_application_routing --generate-ssh-keys
     Write-Host "Cluster created." -ForegroundColor Green
-    Start-Sleep 5
 }
+
+Start-Sleep 5
