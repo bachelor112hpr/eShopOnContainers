@@ -1,19 +1,19 @@
 #!/bin/bash
 
-#sudo apt-get update
-#sudo apt-get install docker.io
-#sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-#sudo apt-get install -y unzip
+sudo apt-get update
+sudo apt-get install docker.io
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo apt-get install -y unzip
 
-#sudo chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-#sudo groupadd docker
-#sudo usermod -a -G docker $USER
+sudo groupadd docker
+sudo usermod -a -G docker $USER
 
-#sudo systemctl start docker
-#sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl enable docker
 
-#wget https://vstsagentpackage.azureedge.net/agent/2.165.2/vsts-agent-linux-x64-2.165.2.tar.gz -P ~/
+wget https://vstsagentpackage.azureedge.net/agent/2.165.2/vsts-agent-linux-x64-2.165.2.tar.gz -P ~/
 
 echo How many agents would you like to setup?
 
