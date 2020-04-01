@@ -50,6 +50,6 @@ if($newRg) {
 Write-Host "Chosen resource group:" -ForegroundColor Yellow
 Write-Host $resourceGroup -ForegroundColor Green
 
-.\create-ACR.ps1 -rg $resourceGroup
-.\createAks.ps1 -rg $resourceGroup
-.\createVM.ps1 -rg $resourceGroup
+Invoke-Expression -Command ".\create-ACR.ps1 -resourceG $resourceGroup"
+Invoke-Expression -Command ".\createAks.ps1 -resourceG $resourceGroup"
+Invoke-Expression -Command ".\createVM.ps1 -resourceG $resourceGroup"

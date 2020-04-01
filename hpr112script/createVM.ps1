@@ -1,4 +1,10 @@
-﻿Install-Module -Name Az.Network -RequiredVersion 2.4.0
+﻿Param(
+    [parameter(Mandatory=$false)][String]$resourceG
+)
+
+$global:rg = $resourceG
+
+Install-Module -Name Az.Network -RequiredVersion 2.4.0
 Install-Module -Name Az.Compute -RequiredVersion 3.6.0
 Install-Module -Name Az -AllowClobber
 Connect-AzAccount
@@ -159,13 +165,13 @@ if ([string]::IsNullOrWhiteSpace($rg)) {
 }
 
 netConfig
-Write-Host "Network configured" -ForegroudColor Green
+Write-Host "Network configured" -ForegroundColor Green
 
 diskConfig
-Write-Host "Disks configured" -ForegroudColor Green
+Write-Host "Disks configured" -ForegronudColor Green
 
 cred
-Write-Host "Credentials configured" -ForegroudColor Green
+Write-Host "Credentials configured" -ForegroundColor Green
 
 $vmConf = vmConfig
 
@@ -173,14 +179,4 @@ Write-Host "Creating virtual machine..." -ForegroundColor Yellow
 New-AzVM -ResourceGroupName $rg -VM $vmConf -Location $location
 Write-Host "Virtual machine created. Login." -ForegroundColor Green
 
-$ipAddress = az vm show -d -g $rg -n $vmName --query publicIps -o tsv
-
-$sshName = $userName+'@'+$ipAddress
-
-Write-Host "Passing config script for the agents to virtual machine..." -ForegroundColor Yellow
-
-scp $pwd\LinuxAgentHost.sh $sshName:/home/$userName/.
-
-Write-Host "Please login to the virtual machine..." -ForegroundColor Yellow
-
-ssh $sshName
+Invoke-Expression -Command ".\vmLogin.ps1 -rg $resourceGroup -vmName $vmName -userName $userName"

@@ -1,6 +1,8 @@
 Param(
-    [parameter(Mandatory=$false)][String]$global:rg
+    [parameter(Mandatory=$false)][String]$resourceG
 )
+
+$global:rg = $resourceG
 
 Write-Host 'Create Azure Container Registry (ACR):' -ForegroundColor Green
 

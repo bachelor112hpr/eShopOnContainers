@@ -39,6 +39,6 @@ $rebootReq = $false
 
     if($rebootReq){
         Write-Host 'Systemrestart required. Rebooting now...' -ForegroundColor Yellow
-	Start-sleep 5
+        Start-Sleep 30
         Restart-Computer
     }
