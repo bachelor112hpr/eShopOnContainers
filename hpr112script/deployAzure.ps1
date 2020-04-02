@@ -1,4 +1,4 @@
-﻿.\Connect-to-Azure.ps1
+﻿#.\Connect-to-Azure.ps1
 
 $location = Read-Host -prompt "Please select a location: (ex. eastus)"
 
@@ -50,6 +50,36 @@ if($newRg) {
 Write-Host "Chosen resource group:" -ForegroundColor Yellow
 Write-Host $resourceGroup -ForegroundColor Green
 
-Invoke-Expression -Command ".\create-ACR.ps1 -resourceG $resourceGroup"
-Invoke-Expression -Command ".\createAks.ps1 -resourceG $resourceGroup"
-Invoke-Expression -Command ".\createVM.ps1 -resourceG $resourceGroup"
+
+$ReadHostcontreg = Read-Host -prompt 'Would you like to create a Container Registry? y/n (Enter for yes)'
+Switch ($ReadHostcontReg) {
+    Y {$contReg=$true}
+    N {$contReg=$false}
+    Default {$contReg=$true}
+}
+
+if($contReg){
+   Invoke-Expression -Command ".\create-ACR.ps1 -resourceG $resourceGroup" 
+}
+
+$ReadHostAKS = Read-Host -prompt 'Would you like to create a cluster? y/n (Enter for yes)'
+Switch ($ReadHostAKS) {
+    Y {$AKS=$true}
+    N {$AKS=$false}
+    Default {$AKS=$true}
+}
+
+if($AKS){
+   Invoke-Expression -Command ".\createAks.ps1 -resourceG $resourceGroup"
+}
+
+$ReadHostVM = Read-Host -prompt 'Would you like to create a VM for hosting agents? y/n (Enter for yes)'
+Switch ($ReadHostAKS) {
+    Y {$VM=$true}
+    N {$VM=$false}
+    Default {$VM=$true}
+}
+
+if($VM){
+   Invoke-Expression -Command ".\createVM.ps1 -resourceG $resourceGroup"
+}
