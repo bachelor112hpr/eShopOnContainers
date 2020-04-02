@@ -51,29 +51,37 @@ Switch($promptAutoscaling) {
     Default {$enableAutoscaling = $false}
 }
 
+Write-Host "Creating service prinsipal" -ForegroundColor Yellow
+
+$sp = az ad sp create-for-rbac --skip-assignment --query '[appId, password]'
+$spId = $sp[1].Trim(",", " ")
+$spSecret = $sp[2].Trim(" ")
+
+Write-Host "SP created:"
+Write-Host "ID: "+$spId
+Write-Host "Secret: "+$spSecret
+
+Start-Sleep 10
+
 if($enableAutoscaling) {
     $minNodes = Read-Host -prompt "Select a minimum number of nodes"
     $maxNodes = Read-Host -prompt "Select a maximum number of nodes"
 
     Write-Host "Creating clutser with autoscaler. Min: $minNodes Max: $maxNodes. This may take a while..." -ForegroundColor Yellow
-    az aks create --resource-group $rg --name $clusterName --node-count $minNodes --enable-cluster-autoscaler --min-count $minNodes --max-count $maxNodes --enable-addons monitoring,http_application_routing --generate-ssh-keys
-    Write-Host "Cluster created." -ForegroundColor Green
+    az aks create --resource-group $rg --name $clusterName --node-count $minNodes --enable-cluster-autoscaler --min-count $minNodes --max-count $maxNodes --enable-addons monitoring,http_application_routing --generate-ssh-keys --service-principal $spId --client-secret $spSecret
 }else {
     $nodes = Read-Host -prompt "Select number of nodes in the cluster"
     Write-Host "Creating cluster with $nodes nodes. This may take a while..." -ForegroundColor Yellow
 
-    $sp = az ad sp create-for-rbac --skip-assignment --query '[appId, password]'
-    $spId = $sp[1].Trim(",", " ")
-    $spSecret = $sp[2].Trim(" ")
-
-    Write-Host "SP created:"
-    Write-Host "ID: "+$spId
-    Write-Host "Secret: "+$spSecret
-
-    Start-Sleep 10
-
     az aks create --resource-group $rg --name $clusterName --node-count $nodes --enable-addons monitoring,http_application_routing --generate-ssh-keys --service-principal $spId --client-secret $spSecret
-    Write-Host "Cluster created." -ForegroundColor Green
 }
+
+Write-Host "Cluster created." -ForegroundColor Green
+
+Write-Host "Getting credentials..." -ForegroundColor Yellow
+
+az aks Get-Credentials -n $clusterName -g $rg
+
+kubectl create clusterrolebinding kubernetes-dashboard -n kube-system --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 
 Start-Sleep 5
