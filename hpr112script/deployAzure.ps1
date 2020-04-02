@@ -1,4 +1,4 @@
-﻿#.\Connect-to-Azure.ps1
+﻿.\Connect-to-Azure.ps1
 
 $location = Read-Host -prompt "Please select a location: (ex. eastus)"
 
