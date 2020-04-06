@@ -2,8 +2,6 @@
 
 <!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
 
-***INSERT GRAPHIC HERE (include hyperlink in image)***
-
 # Setup AKS cluster, ACR and a host for DevOps agents
 
 > This is a guide for how to use the scripts to easely setup a AKS cluster, ACR and a host
