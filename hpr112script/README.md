@@ -16,10 +16,8 @@
 
 - [Preinstallation](#Preinstallation)
 - [Clone](#Clone)
-- [Contributing](#Contributing)
+- [Contributing](#contributing)
 - [Delete all in cluster](#Delete all in cluster)
-
----
 
 ---
 
@@ -71,7 +69,7 @@
 #### Step 5.2
 - run script LinuxAgentHost.sh
 
-## At this point you should have a cluster, a registry, a Linux VM up an running in Azure, and some agents hosted on the Linux VM.
+### At this point you should have a cluster, a registry, a Linux VM up an running in Azure, and some agents hosted on the Linux VM.
 
 ---
 
