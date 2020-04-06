@@ -32,7 +32,7 @@
 
 ---
 
-## Contributing (All installation)
+## Contributing
 
 > To get started...
 
