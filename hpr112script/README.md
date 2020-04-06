@@ -55,12 +55,12 @@
 
 - After reboot, run the script deployAzure.ps1
 - This use the four scirpts Connect-to-Azure.ps1, createAks.ps1, create-ACR.ps1 and creatVM.ps1
-- You will be asked if you want to setup all three or just one or two of the services 
+- Some configuration is required, and you will be asked if you want to setup all three or just one or two of the services
 
 
 ### Step 5
 
-- If you choosen to create a hosting VM you can now configure agents to run on this VM.
+- If you choosen to create a hosting VM you can now configure agents to run on this VM
 - Make sure you are logged in to the linuxVM
 
 #### Step 5.1 
@@ -68,6 +68,7 @@
 
 #### Step 5.2
 - run script LinuxAgentHost.sh
+- Some configuration is required
 
 ### At this point you should have a cluster, a registry, a Linux VM up an running in Azure, and some agents hosted on the Linux VM.
 
@@ -76,7 +77,7 @@
 ### Delete-all
 
 - The script delete-all.ps1 can be used to delete all content in a namespace in the cluster. just run the script with
-  parametes for clustername, resourcegroup and namespace. If you dont define a namespace it will delete all i namespace: default.
+  parametes for clustername, resourcegroup and namespace. If you dont define a namespace it will delete all i namespace: default
 
 ---
 
