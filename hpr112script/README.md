@@ -17,7 +17,7 @@
 - [Preinstallation](#Preinstallation)
 - [Clone](#Clone)
 - [Contributing](#contributing)
-- [Delete all in cluster](#Delete all in cluster)
+- [Delete all in cluster](#Delete-all)
 
 ---
 
@@ -73,7 +73,7 @@
 
 ---
 
-### Delete all in cluster
+### Delete-all
 
 - The script delete-all.ps1 can be used to delete all content in a namespace in the cluster. just run the script with
   parametes for clustername, resourcegroup and namespace. If you dont define a namespace it will delete all i namespace: default.
