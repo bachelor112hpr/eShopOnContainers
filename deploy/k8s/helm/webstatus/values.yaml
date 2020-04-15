@@ -18,7 +18,11 @@ ingress:
   }
   tls: []
 
-resources: {}
+resources:
+  limits:
+    cpu: "50m"
+  requests:
+    cpu: "25m"
 
 
 nodeSelector: {}
