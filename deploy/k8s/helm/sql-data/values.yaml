@@ -13,10 +13,10 @@ service:
 resources:
   limits:
     memory: "2000M"
-    cpu: "50m"
+    cpu: "250m"
   requests:
     memory: "1000M"
-    cpu: "15m"
+    cpu: "50m"
 
 nodeSelector: {}
 
