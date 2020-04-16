@@ -20,10 +20,10 @@ ingress:
 
 resources:
   limits:
-    memory: "10M"
+    memory: "20M"
     cpu: "50m"
   requests:
-    memory: "20M"
+    memory: "10M"
     cpu: "15m"
 
 
