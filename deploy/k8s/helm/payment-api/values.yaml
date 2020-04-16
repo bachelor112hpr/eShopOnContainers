@@ -16,7 +16,13 @@ ingress:
   annotations: {}
   tls: []
 
-resources: {}
+resources:
+  limits:
+    memory: "250M"
+    cpu: "50m"
+  requests:
+    memory: "100M"
+    cpu: "15m"
 
 
 nodeSelector: {}
