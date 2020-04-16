@@ -10,7 +10,13 @@ service:
   port: 1433
 
 
-resources: {}
+resources:
+  limits:
+    memory: "2000M"
+    cpu: "50m"
+  requests:
+    memory: "1000M"
+    cpu: "15m"
 
 nodeSelector: {}
 
