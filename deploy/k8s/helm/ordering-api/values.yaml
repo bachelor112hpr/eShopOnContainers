@@ -19,7 +19,13 @@ ingress:
     - chart-example.local
   tls: []
 
-resources: {}
+resources:
+  limits:
+    memory: "500M"
+    cpu: "30m"
+  requests:
+    memory: "150M"
+    cpu: "10m"
 
 
 nodeSelector: {}
