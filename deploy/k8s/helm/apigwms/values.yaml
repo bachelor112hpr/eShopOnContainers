@@ -18,7 +18,13 @@ ingress:
     ingress.kubernetes.io/rewrite-target: "/"
   tls: []
 
-resources: {}
+resources:
+  limits:
+    memory: "10M"
+    cpu: "50m"
+  requests:
+    memory: "20M"
+    cpu: "20m"
 
 
 nodeSelector: {}
