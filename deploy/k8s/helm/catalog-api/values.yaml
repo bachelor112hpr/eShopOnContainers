@@ -14,8 +14,8 @@ service:
 
 resources:
   limits:
-    memory: "250M"
-    cpu: "50m"
+    memory: "1000M"
+    cpu: "500m"
   requests:
     memory: "100M"
     cpu: "10m"
@@ -66,4 +66,3 @@ probes:
     initialDelaySeconds: 90
     periodSeconds: 60
     port: 80
-

@@ -21,8 +21,8 @@ ingress:
 
 resources:
   limits:
-    memory: "500M"
-    cpu: "30m"
+    memory: "1000M"
+    cpu: "500m"
   requests:
     memory: "150M"
     cpu: "10m"
@@ -60,7 +60,7 @@ env:
     - name: PORT
       value: "80"
     - name: GRPC_PORT
-      value: "81"      
+      value: "81"
 probes:
   liveness:
     path: /liveness

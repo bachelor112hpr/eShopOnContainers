@@ -10,12 +10,12 @@ image:
 service:
   type: ClusterIP
   port: 80
-  grpcPort: 81  
+  grpcPort: 81
 
 resources:
   limits:
-    memory: "250M"
-    cpu: "50m"
+    memory: "1000M"
+    cpu: "500m"
   requests:
     memory: "100M"
     cpu: "15m"
@@ -51,7 +51,7 @@ env:
     - name: PORT
       value: "80"
     - name: GRPC_PORT
-      value: "81"      
+      value: "81"
 probes:
   liveness:
     path: /liveness

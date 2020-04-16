@@ -18,8 +18,8 @@ ingress:
 
 resources:
   limits:
-    memory: "250M"
-    cpu: "50m"
+    memory: "1000M"
+    cpu: "500m"
   requests:
     memory: "100M"
     cpu: "10m"
@@ -53,7 +53,7 @@ env:
     - name: MarketingUrl
       key: internalurls__apigwwm
     - name: IdentityUrlHC
-      key: internalurls__identity__hc      
+      key: internalurls__identity__hc
     - name: SignalrHubUrl
       key: urls__apigwws
       # values define environment variables with a fixed value (no configmap involved) (name is name of var, and value is its value)
@@ -64,4 +64,3 @@ env:
       value: 'K8S'
     - name: IsClusterEnv
       value: 'True'
-
