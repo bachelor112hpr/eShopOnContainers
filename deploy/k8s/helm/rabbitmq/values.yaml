@@ -10,7 +10,13 @@ service:
   port: 5672
 
 
-resources: {}
+resources:
+  limits:
+    memory: "250M"
+    cpu: "250m"
+  requests:
+    memory: "100M"
+    cpu: "50m"
 
 nodeSelector: {}
 
