@@ -10,7 +10,13 @@ service:
   port: 6379
 
 
-resources: {}
+resources:
+  limits:
+    memory: "20M"
+    cpu: "25m"
+  requests:
+    memory: "5M"
+    cpu: "8m"
 
 nodeSelector: {}
 
