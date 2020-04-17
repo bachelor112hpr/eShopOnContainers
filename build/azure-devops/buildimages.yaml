@@ -61,6 +61,10 @@ jobs:
     inputs:
       pathtoPublish: ${{ parameters.helmto }}
       artifactName: helm
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: $(Agent.BuildDirectory)
+      Contents: '**/*'
 - job: BuildWindows
   condition: False
   # condition: ne('${{ variables['Build.Reason'] }}', 'PullRequest')
