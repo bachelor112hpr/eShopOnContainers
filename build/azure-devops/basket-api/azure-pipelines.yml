@@ -22,7 +22,8 @@ jobs:
     image: basket.api
     branch: $(Build.SourceBranchName)
     registryEndpoint: $(registryEndpoint)
-- task: DeleteFiles@1
-  inputs:
-    SourceFolder: '$(Agent.BuildDirectory)'
-    Contents: '**/*'
+  steps:
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(Agent.BuildDirectory)'
+      Contents: '**/*'
