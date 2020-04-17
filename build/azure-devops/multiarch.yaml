@@ -22,7 +22,7 @@ jobs:
   - task: DeleteFiles@1
     inputs:
       SourceFolder: $(Agent.BuildDirectory)
-      Contents: **/*
+      Contents: '**/*'
   - bash: |
       mkdir -p ~/.docker
       sed '$ s/.$//' $DOCKER_CONFIG/config.json > ~/.docker/config.json
