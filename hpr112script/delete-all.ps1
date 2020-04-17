@@ -30,7 +30,7 @@ if($specifyCluster) {
 Write-Host "Deleting all in cluster $name in resource group $rg"
 
 # Things to be deleted from the cluster
-$contents = ("deployments", "pods", "secrets", "replicasets", "configmaps", "ingresses", "services")
+$contents = ("deployments", "pods", "secrets", "replicasets", "configmaps", "ingresses", "services", "hpa")
 
 foreach ($content in $contents) {
     kubectl delete --all $content --namespace=$namespace
