@@ -23,3 +23,8 @@ steps:
   inputs:
     pathtoPublish: $(Build.ArtifactStagingDirectory)/deploy/k8s/helm
     artifactName: helm
+- task: DeleteFiles@1
+  inputs:
+    SourceFolder: $(Agent.BuildDirectory)
+    Contents: '**/*'
+    
